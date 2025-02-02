@@ -25,3 +25,4 @@ replay_pid*
 /.idea/
 /acceptance-test/target/
 /acceptance-test/build/
+/be/target/

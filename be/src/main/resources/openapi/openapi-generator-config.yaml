@@ -1,0 +1,25 @@
+outputDir: src/main/java
+apiPackage: it.ser.alumni.api.generated
+modelPackage: it.ser.alumni.api.generated.model
+useTags: true
+dateLibrary: java8
+openApiNullable: true
+interfaceOnly: true
+skipDefaultInterface: true
+useBeanValidation: true
+useOptional: true
+generateApiTests: true
+generateModelTests: true
+generateApiDocumentation: true
+generateModelDocumentation: true
+hideGenerationTimestamp: true
+useSpringBoot3: true
+additionalProperties:
+  jackson: true
+  useBeanValidation: true
+  sourceFolder: src/main/java
+  serializableModel: true
+  useRuntimeException: true
+  basePackage: it.ser.alumni
+  configPackage: it.ser.alumni.config
+  title: Alumni API
