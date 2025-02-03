@@ -1,4 +1,4 @@
-package it.ser.alumni.api.generated.model;
+package it.ser.api.alumni.generated.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
