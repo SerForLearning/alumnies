@@ -2,14 +2,17 @@ package it.ser.api.alumni.generated.model;
 
 import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.OffsetDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.lang.Nullable;
+
 import java.io.Serializable;
+
 import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
+import java.util.*;
 import jakarta.annotation.Generated;
 
 /**
@@ -21,15 +24,15 @@ public class Error implements Serializable {
 
   private static final long serialVersionUID = 1L;
 
-  private @Nullable String code;
+  private Optional<String> code = Optional.empty();
 
-  private @Nullable String message;
+  private Optional<String> message = Optional.empty();
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private @Nullable OffsetDateTime timestamp;
+  private Optional<OffsetDateTime> timestamp = Optional.empty();
 
   public Error code(String code) {
-    this.code = code;
+    this.code = Optional.of(code);
     return this;
   }
 
@@ -40,16 +43,16 @@ public class Error implements Serializable {
   
   @Schema(name = "code", example = "INVALID_REQUEST", description = "Error code", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("code")
-  public String getCode() {
+  public Optional<String> getCode() {
     return code;
   }
 
-  public void setCode(String code) {
+  public void setCode(Optional<String> code) {
     this.code = code;
   }
 
   public Error message(String message) {
-    this.message = message;
+    this.message = Optional.of(message);
     return this;
   }
 
@@ -60,16 +63,16 @@ public class Error implements Serializable {
   
   @Schema(name = "message", example = "The name field is required", description = "Error description", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("message")
-  public String getMessage() {
+  public Optional<String> getMessage() {
     return message;
   }
 
-  public void setMessage(String message) {
+  public void setMessage(Optional<String> message) {
     this.message = message;
   }
 
   public Error timestamp(OffsetDateTime timestamp) {
-    this.timestamp = timestamp;
+    this.timestamp = Optional.of(timestamp);
     return this;
   }
 
@@ -80,11 +83,11 @@ public class Error implements Serializable {
   @Valid 
   @Schema(name = "timestamp", example = "2024-02-02T10:30Z", description = "Error timestamp", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("timestamp")
-  public OffsetDateTime getTimestamp() {
+  public Optional<OffsetDateTime> getTimestamp() {
     return timestamp;
   }
 
-  public void setTimestamp(OffsetDateTime timestamp) {
+  public void setTimestamp(Optional<OffsetDateTime> timestamp) {
     this.timestamp = timestamp;
   }
 

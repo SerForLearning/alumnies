@@ -17,12 +17,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.request.NativeWebRequest;
 
 import jakarta.validation.Valid;
-
-import java.util.Optional;
-
 import jakarta.annotation.Generated;
 
 @Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.11.0")
@@ -30,43 +26,40 @@ import jakarta.annotation.Generated;
 @Tag(name = "Alumni", description = "the Alumni API")
 public interface AlumniApi {
 
-    default Optional<NativeWebRequest> getRequest() {
-        return Optional.empty();
-    }
-
     /**
      * POST /alumni : Create a new alumna/alumnus
      * Create a record of a new alumna/alumnus within the system
      *
-     * @param alumniRequest (required)
+     * @param alumniRequest  (required)
      * @return alumna/alumnus created with success (status code 201)
-     * or Invalid request (status code 400)
-     * or Internal server error (status code 500)
+     *         or Invalid request (status code 400)
+     *         or Internal server error (status code 500)
      */
     @Operation(
-            operationId = "createAlumni",
-            summary = "Create a new alumna/alumnus",
-            description = "Create a record of a new alumna/alumnus within the system",
-            tags = {"Alumni"},
-            responses = {
-                    @ApiResponse(responseCode = "201", description = "alumna/alumnus created with success", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = AlumniResponse.class))
-                    }),
-                    @ApiResponse(responseCode = "400", description = "Invalid request", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-                    }),
-                    @ApiResponse(responseCode = "500", description = "Internal server error", content = {
-                            @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
-                    })
-            }
+        operationId = "createAlumni",
+        summary = "Create a new alumna/alumnus",
+        description = "Create a record of a new alumna/alumnus within the system",
+        tags = { "Alumni" },
+        responses = {
+            @ApiResponse(responseCode = "201", description = "alumna/alumnus created with success", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = AlumniResponse.class))
+            }),
+            @ApiResponse(responseCode = "400", description = "Invalid request", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            }),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = {
+                @Content(mediaType = "application/json", schema = @Schema(implementation = Error.class))
+            })
+        }
     )
     @PostMapping(
-            value = "/alumni",
-            produces = {"application/json"},
-            consumes = {"application/json"}
+        value = "/alumni",
+        produces = { "application/json" },
+        consumes = { "application/json" }
     )
+    
     ResponseEntity<AlumniResponse> createAlumni(
-            @Parameter(name = "AlumniRequest", description = "", required = true) @Valid @RequestBody AlumniRequest alumniRequest
+        @Parameter(name = "AlumniRequest", description = "", required = true) @Valid @RequestBody AlumniRequest alumniRequest
     );
 
 }

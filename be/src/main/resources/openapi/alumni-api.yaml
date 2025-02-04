@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Alumni Registry Management API
   description: API for handling the REST endpoints
-  version: 1.0.0
+  version: 1.1.0
   contact:
     name: Support Team
     email: support@example.com
@@ -47,10 +47,55 @@ paths:
 
 components:
   schemas:
+    Address:
+      type: object
+      required:
+        - street
+        - number
+        - country
+      properties:
+        street:
+          type: string
+          description: Street name
+          example: "streetname"
+        number:
+          type: string
+          description: Street number
+          example: "22"
+        country:
+          type: string
+          description: Country name
+          example: "country"
+
+    Degree:
+      type: object
+      required:
+        - university
+        - year
+      properties:
+        university:
+          type: string
+          description: University name
+          example: "Politecnico Milano"
+        year:
+          type: integer
+          description: Year of completion
+          example: 2004
+
+    Education:
+      type: object
+      properties:
+        master:
+          $ref: '#/components/schemas/Degree'
+        phd:
+          $ref: '#/components/schemas/Degree'
+
     AlumniRequest:
       type: object
       required:
         - name
+        - addresses
+        - education
       properties:
         name:
           type: string
@@ -58,6 +103,14 @@ components:
           example: "Mario Rossi"
           minLength: 1
           maxLength: 100
+        addresses:
+          type: array
+          description: List of addresses
+          items:
+            $ref: '#/components/schemas/Address'
+          minItems: 1
+        education:
+          $ref: '#/components/schemas/Education'
 
     AlumniResponse:
       type: object
@@ -71,6 +124,13 @@ components:
           type: string
           description: Name of alumna/alumnus
           example: "Mario Rossi"
+        addresses:
+          type: array
+          description: List of addresses
+          items:
+            $ref: '#/components/schemas/Address'
+        education:
+          $ref: '#/components/schemas/Education'
         createdAt:
           type: string
           format: date-time

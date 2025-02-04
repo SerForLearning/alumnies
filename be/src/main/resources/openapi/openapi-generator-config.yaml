@@ -1,6 +1,6 @@
 outputDir: src/main/java
-apiPackage: it.ser.alumni.api.generated
-modelPackage: it.ser.alumni.api.generated.model
+apiPackage: it.ser.api.alumni.generated
+modelPackage: it.ser.api.alumni.generated.model
 useTags: true
 dateLibrary: java8
 openApiNullable: true
