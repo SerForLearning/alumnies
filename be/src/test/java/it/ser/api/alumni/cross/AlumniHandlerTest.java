@@ -1,5 +1,6 @@
 package it.ser.api.alumni.cross;
 
+import it.ser.api.alumni.cross.builders.AlumnaeEntityBuilder;
 import it.ser.api.alumni.handler.AlumniHandler;
 import it.ser.api.alumni.rest.generated.model.AlumniRequest;
 import it.ser.api.alumni.rest.generated.model.AlumniResponse;
@@ -18,14 +19,19 @@ class AlumniHandlerTest {
 
     private AlumniHandler alumniHandler;
     private AlumnaeRepository alumnaeRepository;
+    private AlumnaeEntityBuilder alumnaeEntityBuilder;
 
     @BeforeEach
     void setUp() {
         alumnaeRepository = Mockito.mock(AlumnaeRepository.class);
         AlumnaeEntity t = new AlumnaeEntity();
         t.setName("Mario Rossi");
+        t.setId(1L);
         Mockito.when(alumnaeRepository.save(any())).thenReturn(t);
-        alumniHandler = new AlumniHandler(alumnaeRepository);
+
+        alumnaeEntityBuilder = Mockito.mock(AlumnaeEntityBuilder.class);
+        Mockito.when(alumnaeEntityBuilder.build(any())).thenReturn(t);
+        alumniHandler = new AlumniHandler(alumnaeRepository, alumnaeEntityBuilder);
     }
 
     @Test
