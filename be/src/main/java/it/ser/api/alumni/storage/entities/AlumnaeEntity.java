@@ -19,7 +19,6 @@ public class AlumnaeEntity {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "alumni_id")
-
     List<AddressEntity> addresses;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
