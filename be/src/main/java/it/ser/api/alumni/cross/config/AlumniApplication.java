@@ -1,4 +1,4 @@
-package it.ser.api.alumni.cross;
+package it.ser.api.alumni.cross.config;
 
 
 import org.springframework.boot.SpringApplication;

@@ -2,7 +2,7 @@ package it.ser.api.alumni.e2e;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import it.ser.api.alumni.cross.AlumniApplication;
+import it.ser.api.alumni.cross.config.AlumniApplication;
 import it.ser.api.alumni.storage.entities.AddressEntity;
 import it.ser.api.alumni.storage.entities.AlumnaeEntity;
 import it.ser.api.alumni.storage.repo.AlumnaeRepository;

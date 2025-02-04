@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class Handler {
+public class AlumniHandler {
     private final AlumnaeRepository alumnaeRepository;
 
     @Autowired
-    public Handler(AlumnaeRepository alumnaeRepository) {
+    public AlumniHandler(AlumnaeRepository alumnaeRepository) {
         this.alumnaeRepository = alumnaeRepository;
     }
 

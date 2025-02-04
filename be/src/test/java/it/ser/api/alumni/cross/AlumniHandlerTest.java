@@ -1,6 +1,6 @@
 package it.ser.api.alumni.cross;
 
-import it.ser.api.alumni.handler.Handler;
+import it.ser.api.alumni.handler.AlumniHandler;
 import it.ser.api.alumni.rest.generated.model.AlumniRequest;
 import it.ser.api.alumni.rest.generated.model.AlumniResponse;
 import it.ser.api.alumni.storage.entities.AlumnaeEntity;
@@ -14,9 +14,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 
-class HandlerTest {
+class AlumniHandlerTest {
 
-    private Handler handler;
+    private AlumniHandler alumniHandler;
     private AlumnaeRepository alumnaeRepository;
 
     @BeforeEach
@@ -25,7 +25,7 @@ class HandlerTest {
         AlumnaeEntity t = new AlumnaeEntity();
         t.setName("Mario Rossi");
         Mockito.when(alumnaeRepository.save(any())).thenReturn(t);
-        handler = new Handler(alumnaeRepository);
+        alumniHandler = new AlumniHandler(alumnaeRepository);
     }
 
     @Test
@@ -36,7 +36,7 @@ class HandlerTest {
 
         AlumniRequest alumniRequest = new AlumniRequest();
 
-        Optional<AlumniResponse> alumniResponse = handler.handle(alumniRequest);
+        Optional<AlumniResponse> alumniResponse = alumniHandler.handle(alumniRequest);
 
         assertTrue(alumniResponse.isPresent());
         assertEquals(alumniResponseExpected.getName(), alumniResponse.get().getName());
@@ -47,7 +47,7 @@ class HandlerTest {
         AlumniResponse alumniResponseExpected = new AlumniResponse();
         alumniResponseExpected.name("Mario Rossi");
 
-        Optional<AlumniResponse> alumniResponse = handler.handle(null);
+        Optional<AlumniResponse> alumniResponse = alumniHandler.handle(null);
 
         assertFalse(alumniResponse.isPresent());
     }
