@@ -1,8 +1,8 @@
 package it.ser.api.alumni.cross;
 
 import it.ser.api.alumni.handler.Handler;
-import it.ser.api.alumni.generated.model.AlumniRequest;
-import it.ser.api.alumni.generated.model.AlumniResponse;
+import it.ser.api.alumni.rest.generated.model.AlumniRequest;
+import it.ser.api.alumni.rest.generated.model.AlumniResponse;
 import it.ser.api.alumni.storage.entities.AlumnaeEntity;
 import it.ser.api.alumni.storage.repo.AlumnaeRepository;
 import org.junit.jupiter.api.BeforeEach;

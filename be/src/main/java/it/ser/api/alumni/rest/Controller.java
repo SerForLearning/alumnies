@@ -1,9 +1,9 @@
 package it.ser.api.alumni.rest;
 
 import it.ser.api.alumni.handler.Handler;
-import it.ser.api.alumni.generated.AlumniApi;
-import it.ser.api.alumni.generated.model.AlumniRequest;
-import it.ser.api.alumni.generated.model.AlumniResponse;
+import it.ser.api.alumni.rest.generated.AlumniApi;
+import it.ser.api.alumni.rest.generated.model.AlumniRequest;
+import it.ser.api.alumni.rest.generated.model.AlumniResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 

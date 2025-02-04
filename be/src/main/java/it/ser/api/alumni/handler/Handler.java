@@ -1,7 +1,7 @@
 package it.ser.api.alumni.handler;
 
-import it.ser.api.alumni.generated.model.AlumniRequest;
-import it.ser.api.alumni.generated.model.AlumniResponse;
+import it.ser.api.alumni.rest.generated.model.AlumniRequest;
+import it.ser.api.alumni.rest.generated.model.AlumniResponse;
 import it.ser.api.alumni.storage.entities.*;
 import it.ser.api.alumni.storage.repo.AlumnaeRepository;
 import org.springframework.beans.factory.annotation.Autowired;

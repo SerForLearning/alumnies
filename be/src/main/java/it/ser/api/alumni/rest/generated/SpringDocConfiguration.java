@@ -1,4 +1,4 @@
-package it.ser.api.alumni.generated;
+package it.ser.api.alumni.rest.generated;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

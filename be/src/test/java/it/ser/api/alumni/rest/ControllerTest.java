@@ -1,8 +1,8 @@
 package it.ser.api.alumni.rest;
 
 import it.ser.api.alumni.handler.Handler;
-import it.ser.api.alumni.generated.model.AlumniRequest;
-import it.ser.api.alumni.generated.model.AlumniResponse;
+import it.ser.api.alumni.rest.generated.model.AlumniRequest;
+import it.ser.api.alumni.rest.generated.model.AlumniResponse;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.ResponseEntity;

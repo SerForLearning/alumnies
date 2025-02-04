@@ -3,11 +3,11 @@
  * https://openapi-generator.tech
  * Do not edit the class manually.
  */
-package it.ser.api.alumni.generated;
+package it.ser.api.alumni.rest.generated;
 
-import it.ser.api.alumni.generated.model.AlumniRequest;
-import it.ser.api.alumni.generated.model.AlumniResponse;
-import it.ser.api.alumni.generated.model.Error;
+import it.ser.api.alumni.rest.generated.model.AlumniRequest;
+import it.ser.api.alumni.rest.generated.model.AlumniResponse;
+import it.ser.api.alumni.rest.generated.model.Error;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
