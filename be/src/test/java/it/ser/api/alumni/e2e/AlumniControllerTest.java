@@ -65,6 +65,7 @@ public class AlumniControllerTest {
 
     @BeforeEach
     void setUp() {
+        alumnaeRepository.deleteAll();
         RestAssured.baseURI = "http://localhost:" + port;
         String requestBody = getRequestBody();
         savedAlumnaeId = given()
