@@ -58,7 +58,7 @@ public interface AlumniApi {
         consumes = { "application/json" }
     )
     
-    ResponseEntity<AlumniResponse> createAlumni(
+    ResponseEntity<Object> createAlumni(
         @Parameter(name = "AlumniRequest", description = "", required = true) @Valid @RequestBody AlumniRequest alumniRequest
     );
 

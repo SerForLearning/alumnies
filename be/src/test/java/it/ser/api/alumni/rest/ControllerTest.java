@@ -24,7 +24,7 @@ class ControllerTest {
 
         Controller controller = new Controller(alumniHandler);
 
-        ResponseEntity<AlumniResponse> alumni = controller.createAlumni(new AlumniRequest());
+        ResponseEntity<Object> alumni = controller.createAlumni(new AlumniRequest());
 
         assertNotNull(alumni);
 
