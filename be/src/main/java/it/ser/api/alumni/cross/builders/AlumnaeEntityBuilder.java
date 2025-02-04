@@ -4,48 +4,83 @@ import it.ser.api.alumni.rest.generated.model.AlumniRequest;
 import it.ser.api.alumni.storage.entities.*;
 import org.springframework.stereotype.Component;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class AlumnaeEntityBuilder {
-    public AlumnaeEntity build(AlumniRequest alumniRequest) {
+
+    public Optional<AlumnaeEntity> build(AlumniRequest alumniRequest) {
+        if (alumniRequest == null) {
+            return Optional.empty();
+        }
+
         AlumnaeEntity alumnaeEntity = new AlumnaeEntity();
         alumnaeEntity.setName(mapName(alumniRequest));
         alumnaeEntity.setAddresses(mapAddresses(alumniRequest));
         alumnaeEntity.setEducation(mapEducation(alumniRequest));
-        return alumnaeEntity;
+        return Optional.of(alumnaeEntity);
     }
 
-    public EducationEntity mapEducation(AlumniRequest alumniRequest) {
+    private EducationEntity mapEducation(AlumniRequest alumniRequest) {
         return new EducationEntity(
                 mapMaster(alumniRequest),
                 mapPhd(alumniRequest)
         );
     }
 
-    public PhdDegreeEntity mapPhd(AlumniRequest alumniRequest) {
-        return new PhdDegreeEntity(
-                alumniRequest.getEducation().getPhd().get().getUniversity(),//TODO manage null and empty values
-                alumniRequest.getEducation().getPhd().get().getYear()//TODO manage null and empty values
-        );
+    private PhdDegreeEntity mapPhd(AlumniRequest alumniRequest) {
+        return alumniRequest.getEducation()
+                .getPhd()
+                .flatMap(phd -> Optional.of(new PhdDegreeEntity(
+                        safeGet(phd::getUniversity),
+                        safeGet(phd::getYear)
+                )))
+                .orElse(null);
     }
 
-    public MasterDegreeEntity mapMaster(AlumniRequest alumniRequest) {
-        return new MasterDegreeEntity(
-                alumniRequest.getEducation().getMaster().get().getUniversity(),//TODO manage null and empty values
-                alumniRequest.getEducation().getMaster().get().getYear()//TODO manage null and empty values
-        );
+    private MasterDegreeEntity mapMaster(AlumniRequest alumniRequest) {
+        return alumniRequest.getEducation()
+                .getMaster()
+                .flatMap(master -> Optional.of(new MasterDegreeEntity(
+                        safeGet(master::getUniversity),
+                        safeGet(master::getYear)
+                )))
+                .orElse(null);
     }
 
-    public String mapName(AlumniRequest alumniRequest) {
-        return alumniRequest.getName();
+    private String mapName(AlumniRequest alumniRequest) {
+        return Optional.ofNullable(alumniRequest.getName()).orElse("Unknown");
     }
 
-    public List<AddressEntity> mapAddresses(AlumniRequest alumniRequest) {
-        return alumniRequest.getAddresses().stream().map(address -> new AddressEntity(
-                address.getStreet(),
-                address.getNumber(),
-                address.getCountry()
-        )).toList();
+    private List<AddressEntity> mapAddresses(AlumniRequest alumniRequest) {
+        return Optional.ofNullable(alumniRequest.getAddresses())
+                .orElse(Collections.emptyList())
+                .stream()
+                .map(address -> new AddressEntity(
+                        safeGet(address::getStreet),
+                        safeGet(address::getNumber),
+                        safeGet(address::getCountry)
+                ))
+                .toList();
+    }
+
+    private String safeGet(Supplier<String> getter) {
+        return Optional.ofNullable(getter.get()).filter(value -> !value.trim().isEmpty()).orElse("Unknown");
+    }
+
+    private Integer safeGet(IntegerGetter getter) {
+        return Optional.ofNullable(getter.get()).orElse(0);
+    }
+
+    @FunctionalInterface
+    private interface IntegerGetter {
+        Integer get();
+    }
+
+    @FunctionalInterface
+    private interface Supplier<T> {
+        T get();
     }
 }

@@ -30,7 +30,7 @@ class AlumniHandlerTest {
         Mockito.when(alumnaeRepository.save(any())).thenReturn(t);
 
         alumnaeEntityBuilder = Mockito.mock(AlumnaeEntityBuilder.class);
-        Mockito.when(alumnaeEntityBuilder.build(any())).thenReturn(t);
+        Mockito.when(alumnaeEntityBuilder.build(any())).thenReturn(Optional.of(t));
         alumniHandler = new AlumniHandler(alumnaeRepository, alumnaeEntityBuilder);
     }
 
